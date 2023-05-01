@@ -29,6 +29,7 @@ public class AlunoResource {
     @POST
     @Transactional
     public Response cadastrar(Aluno aluno) {
+        aluno.matricula = "a" + aluno.matricula;
         Aluno.persist(aluno);
         return Response.ok(aluno).build();
     }
@@ -38,7 +39,25 @@ public class AlunoResource {
     @Transactional
     public Response alterar(@PathParam("id")Long id, Aluno atualizacao) {
         Aluno aluno = Aluno.findById(id);
-        aluno.matricula = atualizacao.matricula;
+        if (aluno == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        aluno.matricula = "a" + atualizacao.matricula;
+        aluno.nome = atualizacao.nome;
+        aluno.nota = atualizacao.nota;
+        aluno.persist();
+        return Response.ok(aluno).build();
+    }
+
+    @PUT
+    @Path("/{matricula}")
+    @Transactional
+    public Response alterar(@PathParam("matricula")String matricula, Aluno atualizacao) {
+        Aluno aluno = Aluno.find("matricula", matricula).firstResult();
+        if (aluno == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        aluno.matricula = "a" + atualizacao.matricula;
         aluno.nome = atualizacao.nome;
         aluno.nota = atualizacao.nota;
         aluno.persist();
