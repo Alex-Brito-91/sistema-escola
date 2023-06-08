@@ -34,21 +34,6 @@ public class AlunoResource {
         return Response.ok(aluno).build();
     }
 
-/*    @PUT
-    @Path("/{id}")
-    @Transactional
-    public Response alterar(@PathParam("id")Long id, Aluno atualizacao) {
-        Aluno aluno = Aluno.findById(id);
-        if (aluno == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        aluno.matricula = "a" + atualizacao.matricula;
-        aluno.nome = atualizacao.nome;
-        aluno.nota = atualizacao.nota;
-        aluno.persist();
-        return Response.ok(aluno).build();
-    }*/
-
     @PUT
     @Path("/{matricula}")
     @Transactional
