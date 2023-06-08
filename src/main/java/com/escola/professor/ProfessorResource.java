@@ -32,18 +32,6 @@ public class ProfessorResource {
         return Response.ok(professor).build();
     }
 
-/*    @PUT
-    @Path("/{id}")
-    @Transactional
-    public Response alterar(@PathParam("id")Long id, Professor atualizacao) {
-        Professor professor = Professor.findById(id);
-        professor.disciplina = atualizacao.disciplina;
-        professor.matricula = "p" + atualizacao.matricula;
-        professor.nome = atualizacao.nome;
-        professor.persist();
-        return Response.ok(professor).build();
-    }*/
-
     @PUT
     @Path("/{matricula}")
     @Transactional
